@@ -6,6 +6,8 @@ services:
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
+    volumes:
+      - logs:/app/logs
   nginx:
     image: nginx:latest
     volumes:
@@ -14,3 +16,6 @@ services:
       - loadbalancer
     ports:
       - "3000:3000"
+volumes:
+  logs:
+    driver: local
