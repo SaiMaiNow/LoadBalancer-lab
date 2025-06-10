@@ -33,7 +33,8 @@ app.get('/', async (req, res) => {
 
 app.get('/read', async (req, res) => {
     try {
-        const data = await fs.readFile('logs.json', 'utf8');
+        const logPath = path.join(__dirname, 'logs');
+        const data = await fs.readFile(path.join(logPath, 'logs.json'), 'utf8');
         res.json(JSON.parse(data));
     } catch (error) {
         res.status(500).json({ error: 'Failed to read log file' });
